@@ -1,0 +1,80 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <AnalysisLevel>5.0</AnalysisLevel>
+        <AssemblyName>Zetatech.Tracking.Domain</AssemblyName>
+        <AssemblyOriginatorKeyFile>$(SolutionDir)/Signature.snk</AssemblyOriginatorKeyFile>
+        <AssemblyTitle>Library with the domain layer components</AssemblyTitle>
+        <AssemblyVersion>10.0.0</AssemblyVersion>
+        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+        <Authors>Zeta Technologies</Authors>
+        <CodeAnalysisOutputToConsole>true</CodeAnalysisOutputToConsole>
+        <Company>Zeta Technologies</Company>
+        <Configurations>Debug;Release</Configurations>
+        <ContentTargetFolders>content</ContentTargetFolders>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <Copyright>Zeta Technologies © 2025</Copyright>
+        <Description>Library with the domain layer components</Description>
+        <EnableNETAnalyzers>true</EnableNETAnalyzers>
+        <EnablePackageValidation>true</EnablePackageValidation>
+        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+        <FileVersion>10.0.0</FileVersion>
+        <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+        <ImplicitUsings>disable</ImplicitUsings>
+        <IncludeBuildOutput>true</IncludeBuildOutput>
+        <IncludeContentInPack>true</IncludeContentInPack>
+        <IncludeSource>false</IncludeSource>
+        <IncludeSymbols>true</IncludeSymbols>
+        <InformationalVersion>10.0.0</InformationalVersion>
+        <IsPackable>true</IsPackable>
+        <IsPublishable>false</IsPublishable>
+        <IsTestProject>false</IsTestProject>
+        <IsTool>false</IsTool>
+        <NeutralLanguage>en-US</NeutralLanguage>
+        <Nullable>disable</Nullable>
+        <OutputType>library</OutputType>
+        <PackageDescription>Library with the domain layer components</PackageDescription>
+        <PackageIcon>PackageIcon.png</PackageIcon>
+        <PackageId>Zetatech.Tracking.Domain</PackageId>
+        <PackageLicenseFile>License.txt</PackageLicenseFile>
+        <PackageProjectUrl>https://github.com/users/josemaria-toro/projects/14</PackageProjectUrl>
+        <PackageReadmeFile>Readme.md</PackageReadmeFile>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <PackageTags>Tracking Zetatech</PackageTags>
+        <PackageVersion>10.0.0</PackageVersion>
+        <Product>Tracking Platform</Product>
+        <PublishDocumentationFile>false</PublishDocumentationFile>
+        <PublishDocumentationFiles>false</PublishDocumentationFiles>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/josemaria-toro/tracking.git</RepositoryUrl>
+        <RootNamespace>Zetatech.Tracking.Domain</RootNamespace>
+        <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
+        <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
+        <RunCodeAnalysis>false</RunCodeAnalysis>
+        <SignAssembly>true</SignAssembly>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <TargetFramework>net10.0</TargetFramework>
+        <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>portable</DebugType>
+        <DefineDebug>true</DefineDebug>
+        <DefineTrace>true</DefineTrace>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)'=='Release'">
+        <DebugSymbols>false</DebugSymbols>
+        <Optimize>true</Optimize>
+    </PropertyGroup>
+    <ItemGroup>
+        <Content Include="Readme.md" Pack="true" PackagePath="Readme.md" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="$(SolutionDir)/License.txt" Pack="true" PackagePath="License.txt" />
+        <Content Include="$(SolutionDir)/PackageIcon.png" Pack="true" PackagePath="PackageIcon.png" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Zetatech.Accelerate.Abstractions" Version="10.0.0" />
+    </ItemGroup>
+</Project>

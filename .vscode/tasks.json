@@ -1,0 +1,125 @@
+{
+    "tasks": [
+        {
+            "command": "rm --dir --force --recursive /home/zeta/.nuget/packages/zetatech.tracking.*",
+            "dependsOn": [],
+            "dependsOrder": "sequence",
+            "group": {
+                "isDefault": false,
+                "kind": "none"
+            },
+            "hide": true,
+            "label": "tracking: cleanup",
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "promptOnClose": false,
+            "type": "shell"
+        },
+        {
+            "command": "dotnet restore Zetatech.Tracking.sln --nologo --verbosity normal",
+            "dependsOn": [
+                "tracking: cleanup"
+            ],
+            "dependsOrder": "sequence",
+            "group": {
+                "isDefault": false,
+                "kind": "none"
+            },
+            "hide": true,
+            "label": "tracking: restore",
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "promptOnClose": false,
+            "type": "shell"
+        },
+        {
+            "command": "dotnet clean Zetatech.Tracking.sln --configuration debug --nologo --verbosity normal",
+            "dependsOn": [
+                "tracking: restore"
+            ],
+            "dependsOrder": "sequence",
+            "group": {
+                "isDefault": false,
+                "kind": "none"
+            },
+            "hide": true,
+            "label": "tracking: clean",
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "promptOnClose": false,
+            "type": "shell"
+        },
+        {
+            "command": "dotnet build Zetatech.Tracking.sln --configuration debug --nologo --no-restore --verbosity normal",
+            "dependsOn": [
+                "tracking: clean"
+            ],
+            "dependsOrder": "sequence",
+            "group": {
+                "isDefault": true,
+                "kind": "build"
+            },
+            "hide": false,
+            "label": "tracking: build",
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "promptOnClose": false,
+            "type": "shell"
+        },
+        {
+            "command": "dotnet pack Zetatech.Tracking.sln --configuration debug --include-source --include-symbols --nologo --no-restore --output /home/zeta/.nuget/offline --verbosity normal",
+            "dependsOn": [
+                "tracking: build"
+            ],
+            "dependsOrder": "sequence",
+            "group": {
+                "isDefault": false,
+                "kind": "none"
+            },
+            "hide": false,
+            "label": "tracking: pack",
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "promptOnClose": false,
+            "type": "shell"
+        },
+        {
+            "command": "dotnet publish --artifacts-path artifacts --configuration release --nologo --self-contained --verbosity normal Zetatech.Tracking.sln",
+            "dependsOn": [],
+            "group": {
+                "isDefault": false,
+                "kind": "none"
+            },
+            "hide": false,
+            "label": "tracking: publish",
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "promptOnClose": false,
+            "type": "shell"
+        },
+        {
+            "command": "dotnet outdated --no-restore --pre-debug never --recursive --upgrade:prompt --version-lock major Zetatech.Tracking.sln",
+            "dependsOn": [
+                "tracking: build"
+            ],
+            "group": {
+                "isDefault": false,
+                "kind": "none"
+            },
+            "hide": false,
+            "label": "tracking: outdated",
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "promptOnClose": false,
+            "type": "shell"
+        }
+    ],
+    "version": "2.0.0"
+}

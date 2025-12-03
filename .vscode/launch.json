@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "args": [],
+            "console": "internalConsole",
+            "cwd": "${workspaceFolder}",
+            "name": "Tracking (subscribers)",
+            "preLaunchTask": "tracking: build",
+            "program": "${workspaceFolder}/Zetatech.Tracking.Subscribers/bin/Debug/net10.0/Zetatech.Tracking.Subscribers.dll",
+            "request": "launch",
+            "stopAtEntry": false,
+            "type": "coreclr"
+        }
+    ],
+    "version": "0.2.0"
+}
