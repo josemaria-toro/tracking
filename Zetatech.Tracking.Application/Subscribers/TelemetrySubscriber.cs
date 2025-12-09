@@ -100,14 +100,15 @@ public sealed class TelemetrySubscriber : RabbitMqSubscriberService<TrackingMess
     {
         var dependencyEntity = new DependencyEntity
         {
+            CreatedAt = message.Timestamp,
             Id = message.Id,
             InputData = message.Properties.ContainsKey("input") ? message.Properties["input"] : String.Empty,
             Name = message.Properties.ContainsKey("name") ? message.Properties["name"] : throw new ValidationException("The property 'name' is required"),
             OperationId = message.OperationId,
             OutputData = message.Properties.ContainsKey("output") ? message.Properties["output"] : String.Empty,
             TargetName = message.Properties.ContainsKey("target") ? message.Properties["target"] : throw new ValidationException("The property 'target' is required"),
-            Timestamp = message.Timestamp,
-            Type = message.Properties.ContainsKey("type") ? message.Properties["type"] : throw new ValidationException("The property 'type' is required")
+            Type = message.Properties.ContainsKey("type") ? message.Properties["type"] : throw new ValidationException("The property 'type' is required"),
+            UpdatedAt = message.Timestamp
         };
 
         if (!message.Properties.ContainsKey("appId"))
@@ -128,8 +129,9 @@ public sealed class TelemetrySubscriber : RabbitMqSubscriberService<TrackingMess
         {
             if (Double.TryParse(message.Properties["duration"], out var duration))
             {
+                dependencyEntity.CreatedAt = dependencyEntity.CreatedAt.AddMilliseconds(-duration);
                 dependencyEntity.Duration = duration;
-                dependencyEntity.Timestamp = dependencyEntity.Timestamp.AddMilliseconds(-duration);
+                dependencyEntity.UpdatedAt = dependencyEntity.UpdatedAt.AddMilliseconds(-duration);
             }
             else
             {
@@ -157,13 +159,14 @@ public sealed class TelemetrySubscriber : RabbitMqSubscriberService<TrackingMess
         var httpRequestEntity = new HttpRequestEntity
         {
             Body = message.Properties.ContainsKey("body") ? message.Properties["body"] : String.Empty,
+            CreatedAt = message.Timestamp,
             Id = message.Id,
             IpAddress = message.Properties.ContainsKey("ipAddress") ? message.Properties["ipAddress"] : String.Empty,
             Name = message.Properties.ContainsKey("name") ? message.Properties["name"] : throw new ValidationException("The property 'ipAddress' is required"),
             OperationId = message.OperationId,
             ResponseBody = message.Properties.ContainsKey("responseBody") ? message.Properties["responseBody"] : String.Empty,
-            Url = message.Properties.ContainsKey("url") ? message.Properties["url"] : throw new ValidationException("The property 'url' is required"),
-            Timestamp = message.Timestamp
+            UpdatedAt = message.Timestamp,
+            Url = message.Properties.ContainsKey("url") ? message.Properties["url"] : throw new ValidationException("The property 'url' is required")
         };
 
         if (!message.Properties.ContainsKey("appId"))
@@ -184,8 +187,9 @@ public sealed class TelemetrySubscriber : RabbitMqSubscriberService<TrackingMess
         {
             if (Double.TryParse(message.Properties["duration"], out var duration))
             {
+                httpRequestEntity.CreatedAt = httpRequestEntity.CreatedAt.AddMilliseconds(-duration);
                 httpRequestEntity.Duration = duration;
-                httpRequestEntity.Timestamp = httpRequestEntity.Timestamp.AddMilliseconds(-duration);
+                httpRequestEntity.UpdatedAt = httpRequestEntity.UpdatedAt.AddMilliseconds(-duration);
             }
             else
             {
@@ -224,11 +228,12 @@ public sealed class TelemetrySubscriber : RabbitMqSubscriberService<TrackingMess
     {
         var metricEntity = new MetricEntity
         {
+            CreatedAt = message.Timestamp,
             DimensionName = message.Properties.ContainsKey("dimension") ? message.Properties["dimension"] : String.Empty,
             Id = message.Id,
             Name = message.Properties.ContainsKey("name") ? message.Properties["name"] : throw new ValidationException("The property 'name' is required"),
             OperationId = message.OperationId,
-            Timestamp = message.Timestamp,
+            UpdatedAt = message.Timestamp
         };
 
         if (!message.Properties.ContainsKey("appId"))
@@ -266,12 +271,13 @@ public sealed class TelemetrySubscriber : RabbitMqSubscriberService<TrackingMess
     {
         var pageViewEntity = new PageViewEntity
         {
+            CreatedAt = message.Timestamp,
             DeviceName = message.Properties.ContainsKey("device") ? message.Properties["device"] : String.Empty,
             Id = message.Id,
             IpAddress = message.Properties.ContainsKey("ipAddress") ? message.Properties["ipAddress"] : String.Empty,
             Name = message.Properties.ContainsKey("name") ? message.Properties["name"] : throw new ValidationException("The property 'value' is required"),
             OperationId = message.OperationId,
-            Timestamp = message.Timestamp,
+            UpdatedAt = message.Timestamp,
             Url = message.Properties.ContainsKey("uri") ? message.Properties["uri"] : String.Empty,
             UserAgent = message.Properties.ContainsKey("userAgent") ? message.Properties["userAgent"] : String.Empty
         };
@@ -294,8 +300,9 @@ public sealed class TelemetrySubscriber : RabbitMqSubscriberService<TrackingMess
         {
             if (Double.TryParse(message.Properties["duration"], out var duration))
             {
+                pageViewEntity.CreatedAt = pageViewEntity.CreatedAt.AddMilliseconds(-duration);
                 pageViewEntity.Duration = duration;
-                pageViewEntity.Timestamp = pageViewEntity.Timestamp.AddMilliseconds(-duration);
+                pageViewEntity.UpdatedAt = pageViewEntity.UpdatedAt.AddMilliseconds(-duration);
             }
             else
             {
@@ -310,11 +317,12 @@ public sealed class TelemetrySubscriber : RabbitMqSubscriberService<TrackingMess
     {
         var testResultEntity = new TestResultEntity
         {
+            CreatedAt = message.Timestamp,
             Id = message.Id,
             Message = message.Properties.ContainsKey("message") ? message.Properties["message"] : String.Empty,
             Name = message.Properties.ContainsKey("name") ? message.Properties["name"] : throw new ValidationException("The property 'appId' is required"),
             OperationId = message.OperationId,
-            Timestamp = message.Timestamp
+            UpdatedAt = message.Timestamp
         };
 
         if (!message.Properties.ContainsKey("appId"))
@@ -335,8 +343,9 @@ public sealed class TelemetrySubscriber : RabbitMqSubscriberService<TrackingMess
         {
             if (Double.TryParse(message.Properties["duration"], out var duration))
             {
+                testResultEntity.CreatedAt = testResultEntity.CreatedAt.AddMilliseconds(-duration);
                 testResultEntity.Duration = duration;
-                testResultEntity.Timestamp = testResultEntity.Timestamp.AddMilliseconds(-duration);
+                testResultEntity.UpdatedAt = testResultEntity.UpdatedAt.AddMilliseconds(-duration);
             }
             else
             {

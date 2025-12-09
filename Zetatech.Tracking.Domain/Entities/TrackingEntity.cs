@@ -13,6 +13,10 @@ public abstract class TrackingEntity : BaseEntity
     /// </summary>
     public Guid AppId { get; set; }
     /// <summary>
+    /// Gets or sets the timestamp when entity was created.
+    /// </summary>
+    public DateTime CreatedAt { get; set; }
+    /// <summary>
     /// Gets or sets the unique identifier of the entity.
     /// </summary>
     public Guid Id { get; set; }
@@ -21,7 +25,7 @@ public abstract class TrackingEntity : BaseEntity
     /// </summary>
     public Guid OperationId { get; set; }
     /// <summary>
-    /// Gets or sets the timestamp when entity was tracked.
+    /// Gets or sets the timestamp when entity was updated.
     /// </summary>
-    public DateTime Timestamp { get; set; }
+    public DateTime UpdatedAt { get; set; }
 }

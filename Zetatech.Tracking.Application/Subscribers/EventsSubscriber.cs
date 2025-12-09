@@ -64,11 +64,12 @@ public sealed class EventsSubscriber : RabbitMqSubscriberService<TrackingMessage
     {
         var eventEntity = new EventEntity
         {
+            CreatedAt = message.Timestamp,
             Id = message.Id,
             Metadata = message.Properties.ContainsKey("metadata") ? message.Properties["metadata"] : String.Empty,
             Name = message.Properties.ContainsKey("name") ? message.Properties["name"] : throw new ValidationException("The property 'name' is required"),
             OperationId = message.OperationId,
-            Timestamp = message.Timestamp
+            UpdatedAt = message.Timestamp,
         };
 
         if (!message.Properties.ContainsKey("appId"))

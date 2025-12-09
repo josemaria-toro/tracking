@@ -42,18 +42,11 @@ public sealed class TestsResultsRepository : PostgreSqlRepository<TestResultEnti
             entity.Property(x => x.AppId)
                   .HasColumnName("app_id")
                   .IsRequired();
+            entity.Property(x => x.CreatedAt)
+                  .HasColumnName("created_at")
+                  .IsRequired();
             entity.Property(x => x.Id)
                   .HasColumnName("id")
-                  .IsRequired();
-            entity.Property(x => x.Name)
-                  .HasColumnName("name")
-                  .HasMaxLength(128)
-                  .IsRequired();
-            entity.Property(x => x.OperationId)
-                  .HasColumnName("operation_id")
-                  .IsRequired();
-            entity.Property(x => x.Timestamp)
-                  .HasColumnName("timestamp")
                   .IsRequired();
             entity.Property(x => x.Duration)
                   .HasColumnName("duration")
@@ -62,8 +55,18 @@ public sealed class TestsResultsRepository : PostgreSqlRepository<TestResultEnti
                   .HasColumnName("message")
                   .HasMaxLength(4096)
                   .IsRequired();
+            entity.Property(x => x.Name)
+                  .HasColumnName("name")
+                  .HasMaxLength(128)
+                  .IsRequired();
+            entity.Property(x => x.OperationId)
+                  .HasColumnName("operation_id")
+                  .IsRequired();
             entity.Property(x => x.Success)
                   .HasColumnName("success")
+                  .IsRequired();
+            entity.Property(x => x.UpdatedAt)
+                  .HasColumnName("updated_at")
                   .IsRequired();
         });
     }

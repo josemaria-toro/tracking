@@ -35,7 +35,7 @@
             "type": "shell"
         },
         {
-            "command": "dotnet clean Zetatech.Tracking.sln --configuration release --nologo --verbosity normal",
+            "command": "dotnet clean Zetatech.Tracking.sln --configuration debug --nologo --verbosity normal",
             "dependsOn": [
                 "tracking: restore"
             ],
@@ -53,7 +53,7 @@
             "type": "shell"
         },
         {
-            "command": "dotnet build Zetatech.Tracking.sln --configuration release --nologo --no-restore --verbosity normal",
+            "command": "dotnet build Zetatech.Tracking.sln --configuration debug --nologo --no-restore --verbosity normal",
             "dependsOn": [
                 "tracking: clean"
             ],
@@ -71,7 +71,7 @@
             "type": "shell"
         },
         {
-            "command": "dotnet pack Zetatech.Tracking.sln --configuration release --include-source --include-symbols --nologo --no-restore --output /home/zeta/.nuget/offline --verbosity normal",
+            "command": "dotnet pack Zetatech.Tracking.sln --configuration debug --include-source --include-symbols --nologo --no-restore --output /home/zeta/.nuget/offline --verbosity normal",
             "dependsOn": [
                 "tracking: build"
             ],
@@ -89,7 +89,7 @@
             "type": "shell"
         },
         {
-            "command": "dotnet publish --artifacts-path artifacts --configuration release --nologo --no-self-contained --verbosity normal Zetatech.Tracking.sln",
+            "command": "dotnet publish --artifacts-path artifacts --configuration debug --nologo --no-self-contained --verbosity normal Zetatech.Tracking.sln",
             "dependsOn": [
                 "tracking: pack"
             ],

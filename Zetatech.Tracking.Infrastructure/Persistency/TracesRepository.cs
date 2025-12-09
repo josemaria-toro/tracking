@@ -42,6 +42,9 @@ public sealed class TracesRepository : PostgreSqlRepository<TraceEntity, Postgre
             entity.Property(x => x.AppId)
                   .HasColumnName("app_id")
                   .IsRequired();
+            entity.Property(x => x.CreatedAt)
+                  .HasColumnName("created_at")
+                  .IsRequired();
             entity.Property(x => x.Id)
                   .HasColumnName("id")
                   .IsRequired();
@@ -59,8 +62,8 @@ public sealed class TracesRepository : PostgreSqlRepository<TraceEntity, Postgre
                   .HasColumnName("source_type_name")
                   .HasMaxLength(128)
                   .IsRequired();
-            entity.Property(x => x.Timestamp)
-                  .HasColumnName("timestamp")
+            entity.Property(x => x.UpdatedAt)
+                  .HasColumnName("updated_at")
                   .IsRequired();
         });
     }
