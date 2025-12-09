@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Options;
 using System;
 using System.Text.Json;
+using System.Threading.Tasks;
 using Zetatech.Accelerate.Exceptions;
 using Zetatech.Accelerate.Messaging.Services;
 using Zetatech.Accelerate.Tracking;
@@ -47,19 +48,19 @@ public sealed class EventsSubscriber : RabbitMqSubscriberService<TrackingMessage
     /// <param name="message">
     /// Message information.
     /// </param>
-    protected override void OnMessageReceived(TrackingMessage message)
+    protected override async void OnMessageReceived(TrackingMessage message)
     {
         if (message != null)
         {
             switch (message.MessageType)
             {
                 case TrackingMessageTypes.Event:
-                    SaveEvent(message);
+                    await SaveEventAsync(message);
                     break;
             }
         }
     }
-    private void SaveEvent(TrackingMessage message)
+    private async Task SaveEventAsync(TrackingMessage message)
     {
         var eventEntity = new EventEntity
         {
@@ -84,7 +85,7 @@ public sealed class EventsSubscriber : RabbitMqSubscriberService<TrackingMessage
             throw new ValidationException("The property 'appId' has an invalid value");
         }
 
-        _eventsRepository.Insert(eventEntity);
-        _eventsRepository.Commit();
+        await _eventsRepository.InsertAsync(eventEntity);
+        await _eventsRepository.CommitAsync();
     }
 }

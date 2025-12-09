@@ -1,7 +1,7 @@
 {
     "tasks": [
         {
-            "command": "rm --dir --force --recursive /home/zeta/.nuget/packages/zetatech.tracking.*",
+            "command": "rm --dir --force --recursive /home/zeta/.nuget/packages/zetatech.tracking*",
             "dependsOn": [],
             "dependsOrder": "sequence",
             "group": {
@@ -89,7 +89,7 @@
             "type": "shell"
         },
         {
-            "command": "dotnet publish --artifacts-path artifacts --configuration release --nologo --self-contained --verbosity normal Zetatech.Tracking.sln",
+            "command": "dotnet publish --artifacts-path artifacts --configuration release --nologo --no-self-contained --verbosity normal Zetatech.Tracking.sln",
             "dependsOn": [
                 "tracking: pack"
             ],

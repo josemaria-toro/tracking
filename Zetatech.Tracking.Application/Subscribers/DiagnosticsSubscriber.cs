@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Options;
 using System;
 using System.Text.Json;
+using System.Threading.Tasks;
 using Zetatech.Accelerate.Exceptions;
 using Zetatech.Accelerate.Messaging.Services;
 using Zetatech.Accelerate.Tracking;
@@ -53,22 +54,22 @@ public sealed class DiagnosticsSubscriber : RabbitMqSubscriberService<TrackingMe
     /// <param name="message">
     /// Message information.
     /// </param>
-    protected override void OnMessageReceived(TrackingMessage message)
+    protected override async void OnMessageReceived(TrackingMessage message)
     {
         if (message != null)
         {
             switch (message.MessageType)
             {
                 case TrackingMessageTypes.Error:
-                    SaveError(message);
+                    await SaveErrorAsync(message);
                     break;
                 case TrackingMessageTypes.Trace:
-                    SaveTrace(message);
+                    await SaveTraceAsync(message);
                     break;
             }
         }
     }
-    private void SaveError(TrackingMessage message)
+    private async Task SaveErrorAsync(TrackingMessage message)
     {
         var errorEntity = new ErrorEntity
         {
@@ -109,10 +110,10 @@ public sealed class DiagnosticsSubscriber : RabbitMqSubscriberService<TrackingMe
             throw new ValidationException("The property 'severity' has an invalid value");
         }
 
-        _errorsRepository.Insert(errorEntity);
-        _errorsRepository.Commit();
+        await _errorsRepository.InsertAsync(errorEntity);
+        await _errorsRepository.CommitAsync();
     }
-    private void SaveTrace(TrackingMessage message)
+    private async Task SaveTraceAsync(TrackingMessage message)
     {
         var traceEntity = new TraceEntity
         {
@@ -151,7 +152,7 @@ public sealed class DiagnosticsSubscriber : RabbitMqSubscriberService<TrackingMe
             throw new ValidationException("The property 'severity' has an invalid value");
         }
 
-        _tracesRepository.Insert(traceEntity);
-        _tracesRepository.Commit();
+        await _tracesRepository.InsertAsync(traceEntity);
+        await _tracesRepository.CommitAsync();
     }
 }
