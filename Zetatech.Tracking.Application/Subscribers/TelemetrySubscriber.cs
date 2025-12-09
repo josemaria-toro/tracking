@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Options;
 using System;
 using System.Text.Json;
+using System.Threading.Tasks;
 using Zetatech.Accelerate.Exceptions;
 using Zetatech.Accelerate.Messaging.Services;
 using Zetatech.Accelerate.Tracking;
@@ -71,31 +72,31 @@ public sealed class TelemetrySubscriber : RabbitMqSubscriberService<TrackingMess
     /// <param name="message">
     /// Message information.
     /// </param>
-    protected override void OnMessageReceived(TrackingMessage message)
+    protected override async void OnMessageReceived(TrackingMessage message)
     {
         if (message != null)
         {
             switch (message.MessageType)
             {
                 case TrackingMessageTypes.Dependency:
-                    SaveDependency(message);
+                    await SaveDependencyAsync(message);
                     break;
                 case TrackingMessageTypes.HttpRequest:
-                    SaveHttpRequest(message);
+                    await SaveHttpRequestAsync(message);
                     break;
                 case TrackingMessageTypes.Metric:
-                    SaveMetric(message);
+                    await SaveMetricAsync(message);
                     break;
                 case TrackingMessageTypes.PageView:
-                    SavePageView(message);
+                    await SavePageViewAsync(message);
                     break;
                 case TrackingMessageTypes.TestResult:
-                    SaveTestResult(message);
+                    await SaveTestResultAsync(message);
                     break;
             }
         }
     }
-    private void SaveDependency(TrackingMessage message)
+    private async Task SaveDependencyAsync(TrackingMessage message)
     {
         var dependencyEntity = new DependencyEntity
         {
@@ -148,10 +149,10 @@ public sealed class TelemetrySubscriber : RabbitMqSubscriberService<TrackingMess
             }
         }
 
-        _dependenciesRepository.Insert(dependencyEntity);
-        _dependenciesRepository.Commit();
+        await _dependenciesRepository.InsertAsync(dependencyEntity);
+        await _dependenciesRepository.CommitAsync();
     }
-    private void SaveHttpRequest(TrackingMessage message)
+    private async Task SaveHttpRequestAsync(TrackingMessage message)
     {
         var httpRequestEntity = new HttpRequestEntity
         {
@@ -216,10 +217,10 @@ public sealed class TelemetrySubscriber : RabbitMqSubscriberService<TrackingMess
             }
         }
 
-        _httpRequestsRepository.Insert(httpRequestEntity);
-        _httpRequestsRepository.Commit();
+        await _httpRequestsRepository.InsertAsync(httpRequestEntity);
+        await _httpRequestsRepository.CommitAsync();
     }
-    private void SaveMetric(TrackingMessage message)
+    private async Task SaveMetricAsync(TrackingMessage message)
     {
         var metricEntity = new MetricEntity
         {
@@ -258,10 +259,10 @@ public sealed class TelemetrySubscriber : RabbitMqSubscriberService<TrackingMess
             throw new ValidationException("The property 'value' has an invalid value");
         }
 
-        _metricsRepository.Insert(metricEntity);
-        _metricsRepository.Commit();
+        await _metricsRepository.InsertAsync(metricEntity);
+        await _metricsRepository.CommitAsync();
     }
-    private void SavePageView(TrackingMessage message)
+    private async Task SavePageViewAsync(TrackingMessage message)
     {
         var pageViewEntity = new PageViewEntity
         {
@@ -302,10 +303,10 @@ public sealed class TelemetrySubscriber : RabbitMqSubscriberService<TrackingMess
             }
         }
 
-        _pageViewsRepository.Insert(pageViewEntity);
-        _pageViewsRepository.Commit();
+        await _pageViewsRepository.InsertAsync(pageViewEntity);
+        await _pageViewsRepository.CommitAsync();
     }
-    private void SaveTestResult(TrackingMessage message)
+    private async Task SaveTestResultAsync(TrackingMessage message)
     {
         var testResultEntity = new TestResultEntity
         {
@@ -355,7 +356,7 @@ public sealed class TelemetrySubscriber : RabbitMqSubscriberService<TrackingMess
             }
         }
 
-        _testsResultsRepository.Insert(testResultEntity);
-        _testsResultsRepository.Commit();
+        await _testsResultsRepository.InsertAsync(testResultEntity);
+        await _testsResultsRepository.CommitAsync();
     }
 }

@@ -28,12 +28,12 @@ public static class Program
                                                .AddSubscribers()
                                                .BuildServiceProvider();
 
-        serviceProvider.GetRequiredService<IDiagnosticsSubscriber>()
-                       .SubscribeAsync();
-        serviceProvider.GetRequiredService<IEventsSubscriber>()
-                       .SubscribeAsync();
-        serviceProvider.GetRequiredService<ITelemetrySubscriber>()
-                       .SubscribeAsync();
+        await serviceProvider.GetRequiredService<IDiagnosticsSubscriber>()
+                             .SubscribeAsync();
+        await serviceProvider.GetRequiredService<IEventsSubscriber>()
+                             .SubscribeAsync();
+        await serviceProvider.GetRequiredService<ITelemetrySubscriber>()
+                             .SubscribeAsync();
 
         await Task.Delay(Timeout.Infinite);
     }
