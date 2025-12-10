@@ -4,9 +4,9 @@
             "args": [],
             "console": "internalConsole",
             "cwd": "${workspaceFolder}",
-            "name": "Tracking (subscribers)",
+            "name": "Tracking (jobs)",
             "preLaunchTask": "tracking: build",
-            "program": "${workspaceFolder}/Zetatech.Tracking.Subscribers/bin/Debug/net10.0/Zetatech.Tracking.Subscribers.dll",
+            "program": "${workspaceFolder}/Zetatech.Tracking.Jobs/bin/Debug/net10.0/Zetatech.Tracking.Jobs.dll",
             "request": "launch",
             "stopAtEntry": false,
             "type": "coreclr"

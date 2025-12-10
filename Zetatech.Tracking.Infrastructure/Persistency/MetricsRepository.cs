@@ -42,6 +42,9 @@ public sealed class MetricsRepository : PostgreSqlRepository<MetricEntity, Postg
             entity.Property(x => x.AppId)
                   .HasColumnName("app_id")
                   .IsRequired();
+            entity.Property(x => x.CreatedAt)
+                  .HasColumnName("created_at")
+                  .IsRequired();
             entity.Property(x => x.DimensionName)
                   .HasColumnName("dimension_name")
                   .HasMaxLength(128)
@@ -56,8 +59,8 @@ public sealed class MetricsRepository : PostgreSqlRepository<MetricEntity, Postg
             entity.Property(x => x.OperationId)
                   .HasColumnName("operation_id")
                   .IsRequired();
-            entity.Property(x => x.Timestamp)
-                  .HasColumnName("timestamp")
+            entity.Property(x => x.UpdatedAt)
+                  .HasColumnName("updated_at")
                   .IsRequired();
             entity.Property(x => x.Value)
                   .HasColumnName("value")

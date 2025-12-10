@@ -42,6 +42,9 @@ public sealed class DependenciesRepository : PostgreSqlRepository<DependencyEnti
             entity.Property(x => x.AppId)
                   .HasColumnName("app_id")
                   .IsRequired();
+            entity.Property(x => x.CreatedAt)
+                  .HasColumnName("created_at")
+                  .IsRequired();
             entity.Property(x => x.Duration)
                   .HasColumnName("duration")
                   .IsRequired();
@@ -70,12 +73,12 @@ public sealed class DependenciesRepository : PostgreSqlRepository<DependencyEnti
                   .HasColumnName("target_name")
                   .HasMaxLength(4096)
                   .IsRequired();
-            entity.Property(x => x.Timestamp)
-                  .HasColumnName("timestamp")
-                  .IsRequired();
             entity.Property(x => x.Type)
                   .HasColumnName("type")
                   .HasMaxLength(128)
+                  .IsRequired();
+            entity.Property(x => x.UpdatedAt)
+                  .HasColumnName("updated_at")
                   .IsRequired();
         });
     }

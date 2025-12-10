@@ -42,6 +42,9 @@ public sealed class ErrorsRepository : PostgreSqlRepository<ErrorEntity, Postgre
             entity.Property(x => x.AppId)
                   .HasColumnName("app_id")
                   .IsRequired();
+            entity.Property(x => x.CreatedAt)
+                  .HasColumnName("created_at")
+                  .IsRequired();
             entity.Property(x => x.ErrorTypeName)
                   .HasColumnName("error_type_name")
                   .HasMaxLength(128)
@@ -67,8 +70,8 @@ public sealed class ErrorsRepository : PostgreSqlRepository<ErrorEntity, Postgre
                   .HasColumnName("stack_trace")
                   .HasMaxLength(8192)
                   .IsRequired();
-            entity.Property(x => x.Timestamp)
-                  .HasColumnName("timestamp")
+            entity.Property(x => x.UpdatedAt)
+                  .HasColumnName("updated_at")
                   .IsRequired();
         });
     }

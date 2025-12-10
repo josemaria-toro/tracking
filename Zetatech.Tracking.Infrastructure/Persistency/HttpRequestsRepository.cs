@@ -46,6 +46,9 @@ public sealed class HttpRequestsRepository : PostgreSqlRepository<HttpRequestEnt
                   .HasColumnName("body")
                   .HasMaxLength(8192)
                   .IsRequired();
+            entity.Property(x => x.CreatedAt)
+                  .HasColumnName("created_at")
+                  .IsRequired();
             entity.Property(x => x.Duration)
                   .HasColumnName("duration")
                   .IsRequired();
@@ -73,8 +76,8 @@ public sealed class HttpRequestsRepository : PostgreSqlRepository<HttpRequestEnt
             entity.Property(x => x.Success)
                   .HasColumnName("success")
                   .IsRequired();
-            entity.Property(x => x.Timestamp)
-                  .HasColumnName("timestamp")
+            entity.Property(x => x.UpdatedAt)
+                  .HasColumnName("updated_at")
                   .IsRequired();
             entity.Property(x => x.Url)
                   .HasColumnName("url")

@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Jobs", "Jobs", "{8FACA5AE-6910-C0F8-C7AF-9A631EB1C11B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{8FACA5AE-6910-C0F8-C7AF-9A631EB1C11B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zetatech.Tracking.Jobs", "Zetatech.Tracking.Jobs\Zetatech.Tracking.Jobs.csproj", "{2015CE34-3974-4CCB-97EB-775F80274D40}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{F2E35B3E-9711-EDEC-6202-DB40BDEED14A}"
 EndProject
@@ -12,8 +14,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zetatech.Tracking.Domain", "Zetatech.Tracking.Domain\Zetatech.Tracking.Domain.csproj", "{EC8C2FE8-BD47-4051-A47F-5915D0F6018F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zetatech.Tracking.Infrastructure", "Zetatech.Tracking.Infrastructure\Zetatech.Tracking.Infrastructure.csproj", "{71B6658F-5E5F-4965-8AEA-A25D97B79A0E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zetatech.Tracking.Subscribers", "Zetatech.Tracking.Subscribers\Zetatech.Tracking.Subscribers.csproj", "{2015CE34-3974-4CCB-97EB-775F80274D40}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +25,18 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2015CE34-3974-4CCB-97EB-775F80274D40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2015CE34-3974-4CCB-97EB-775F80274D40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2015CE34-3974-4CCB-97EB-775F80274D40}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2015CE34-3974-4CCB-97EB-775F80274D40}.Debug|x64.Build.0 = Debug|Any CPU
+		{2015CE34-3974-4CCB-97EB-775F80274D40}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2015CE34-3974-4CCB-97EB-775F80274D40}.Debug|x86.Build.0 = Debug|Any CPU
+		{2015CE34-3974-4CCB-97EB-775F80274D40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2015CE34-3974-4CCB-97EB-775F80274D40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2015CE34-3974-4CCB-97EB-775F80274D40}.Release|x64.ActiveCfg = Release|Any CPU
+		{2015CE34-3974-4CCB-97EB-775F80274D40}.Release|x64.Build.0 = Release|Any CPU
+		{2015CE34-3974-4CCB-97EB-775F80274D40}.Release|x86.ActiveCfg = Release|Any CPU
+		{2015CE34-3974-4CCB-97EB-775F80274D40}.Release|x86.Build.0 = Release|Any CPU
 		{18BBE424-5CE4-477F-8C57-4345FE3B8C70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{18BBE424-5CE4-477F-8C57-4345FE3B8C70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18BBE424-5CE4-477F-8C57-4345FE3B8C70}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -61,27 +73,15 @@ Global
 		{71B6658F-5E5F-4965-8AEA-A25D97B79A0E}.Release|x64.Build.0 = Release|Any CPU
 		{71B6658F-5E5F-4965-8AEA-A25D97B79A0E}.Release|x86.ActiveCfg = Release|Any CPU
 		{71B6658F-5E5F-4965-8AEA-A25D97B79A0E}.Release|x86.Build.0 = Release|Any CPU
-		{2015CE34-3974-4CCB-97EB-775F80274D40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2015CE34-3974-4CCB-97EB-775F80274D40}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2015CE34-3974-4CCB-97EB-775F80274D40}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{2015CE34-3974-4CCB-97EB-775F80274D40}.Debug|x64.Build.0 = Debug|Any CPU
-		{2015CE34-3974-4CCB-97EB-775F80274D40}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{2015CE34-3974-4CCB-97EB-775F80274D40}.Debug|x86.Build.0 = Debug|Any CPU
-		{2015CE34-3974-4CCB-97EB-775F80274D40}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2015CE34-3974-4CCB-97EB-775F80274D40}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2015CE34-3974-4CCB-97EB-775F80274D40}.Release|x64.ActiveCfg = Release|Any CPU
-		{2015CE34-3974-4CCB-97EB-775F80274D40}.Release|x64.Build.0 = Release|Any CPU
-		{2015CE34-3974-4CCB-97EB-775F80274D40}.Release|x86.ActiveCfg = Release|Any CPU
-		{2015CE34-3974-4CCB-97EB-775F80274D40}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{2015CE34-3974-4CCB-97EB-775F80274D40} = {8FACA5AE-6910-C0F8-C7AF-9A631EB1C11B}
 		{18BBE424-5CE4-477F-8C57-4345FE3B8C70} = {F2E35B3E-9711-EDEC-6202-DB40BDEED14A}
 		{EC8C2FE8-BD47-4051-A47F-5915D0F6018F} = {F2E35B3E-9711-EDEC-6202-DB40BDEED14A}
 		{71B6658F-5E5F-4965-8AEA-A25D97B79A0E} = {F2E35B3E-9711-EDEC-6202-DB40BDEED14A}
-		{2015CE34-3974-4CCB-97EB-775F80274D40} = {8FACA5AE-6910-C0F8-C7AF-9A631EB1C11B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {24622CA8-B1FE-4FFE-9B1A-1B7D8562BB3F}

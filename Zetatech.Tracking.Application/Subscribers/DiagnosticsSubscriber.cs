@@ -58,6 +58,8 @@ public sealed class DiagnosticsSubscriber : RabbitMqSubscriberService<TrackingMe
     {
         if (message != null)
         {
+            Console.WriteLine($"{DateTime.UtcNow:yyyy-MM-dd HH:mm:ss} | Message of type '{message.MessageType}' was received");
+
             switch (message.MessageType)
             {
                 case TrackingMessageTypes.Error:
@@ -73,13 +75,14 @@ public sealed class DiagnosticsSubscriber : RabbitMqSubscriberService<TrackingMe
     {
         var errorEntity = new ErrorEntity
         {
+            CreatedAt = message.Timestamp,
             ErrorTypeName = message.Properties.ContainsKey("errorTypeName") ? message.Properties["errorTypeName"] : throw new ValidationException("The property 'errorTypeName' is required"),
             Id = message.Id,
             Message = message.Properties.ContainsKey("message") ? message.Properties["message"] : throw new ValidationException("The property 'message' is required"),
             OperationId = message.OperationId,
             SourceTypeName = message.Properties.ContainsKey("sourceTypeName") ? message.Properties["sourceTypeName"] : throw new ValidationException("The property 'sourceTypeName' is required"),
             StackTrace = message.Properties.ContainsKey("stackTrace") ? message.Properties["stackTrace"] : String.Empty,
-            Timestamp = message.Timestamp
+            UpdatedAt = message.Timestamp
         };
 
         if (!message.Properties.ContainsKey("appId"))
@@ -117,11 +120,12 @@ public sealed class DiagnosticsSubscriber : RabbitMqSubscriberService<TrackingMe
     {
         var traceEntity = new TraceEntity
         {
+            CreatedAt = message.Timestamp,
             Id = message.Id,
             Message = message.Properties.ContainsKey("message") ? message.Properties["message"] : throw new ValidationException("The property 'message' is required"),
             OperationId = message.OperationId,
             SourceTypeName = message.Properties.ContainsKey("sourceTypeName") ? message.Properties["sourceTypeName"] : throw new ValidationException("The property 'sourceTypeName' is required"),
-            Timestamp = message.Timestamp
+            UpdatedAt = message.Timestamp
         };
 
         if (!message.Properties.ContainsKey("appId"))

@@ -42,15 +42,8 @@ public sealed class PageViewsRepository : PostgreSqlRepository<PageViewEntity, P
             entity.Property(x => x.AppId)
                   .HasColumnName("app_id")
                   .IsRequired();
-            entity.Property(x => x.Name)
-                  .HasColumnName("name")
-                  .HasMaxLength(128)
-                  .IsRequired();
-            entity.Property(x => x.OperationId)
-                  .HasColumnName("operation_id")
-                  .IsRequired();
-            entity.Property(x => x.Timestamp)
-                  .HasColumnName("timestamp")
+            entity.Property(x => x.CreatedAt)
+                  .HasColumnName("created_at")
                   .IsRequired();
             entity.Property(x => x.DeviceName)
                   .HasColumnName("device_name")
@@ -65,6 +58,16 @@ public sealed class PageViewsRepository : PostgreSqlRepository<PageViewEntity, P
             entity.Property(x => x.IpAddress)
                   .HasColumnName("ip_address")
                   .HasMaxLength(15)
+                  .IsRequired();
+            entity.Property(x => x.Name)
+                  .HasColumnName("name")
+                  .HasMaxLength(128)
+                  .IsRequired();
+            entity.Property(x => x.OperationId)
+                  .HasColumnName("operation_id")
+                  .IsRequired();
+            entity.Property(x => x.UpdatedAt)
+                  .HasColumnName("updated_at")
                   .IsRequired();
             entity.Property(x => x.Url)
                   .HasColumnName("url")

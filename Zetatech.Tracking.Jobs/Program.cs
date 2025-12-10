@@ -3,7 +3,6 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Zetatech.Accelerate.Application.DependencyInjection;
-using Zetatech.Accelerate.Messaging;
 using Zetatech.Tracking.Application.Contracts;
 using Zetatech.Tracking.DependencyInjection;
 
