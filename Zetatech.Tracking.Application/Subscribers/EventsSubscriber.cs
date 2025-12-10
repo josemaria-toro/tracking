@@ -52,6 +52,8 @@ public sealed class EventsSubscriber : RabbitMqSubscriberService<TrackingMessage
     {
         if (message != null)
         {
+            Console.WriteLine($"{DateTime.UtcNow:yyyy-MM-dd HH:mm:ss} | Message of type '{message.MessageType}' was received");
+
             switch (message.MessageType)
             {
                 case TrackingMessageTypes.Event:

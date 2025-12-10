@@ -76,6 +76,8 @@ public sealed class TelemetrySubscriber : RabbitMqSubscriberService<TrackingMess
     {
         if (message != null)
         {
+            Console.WriteLine($"{DateTime.UtcNow:yyyy-MM-dd HH:mm:ss} | Message of type '{message.MessageType}' was received");
+
             switch (message.MessageType)
             {
                 case TrackingMessageTypes.Dependency:

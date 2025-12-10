@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <AnalysisLevel>5.0</AnalysisLevel>
-        <AssemblyName>Zetatech.Tracking.Subscribers</AssemblyName>
+        <AssemblyName>Zetatech.Tracking.Jobs</AssemblyName>
         <AssemblyOriginatorKeyFile>$(SolutionDir)/Signature.snk</AssemblyOriginatorKeyFile>
-        <AssemblyTitle>Application to run as a background service for receiving and processing messages</AssemblyTitle>
+        <AssemblyTitle>Application to run background services</AssemblyTitle>
         <AssemblyVersion>10.0.0</AssemblyVersion>
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
         <Authors>Zeta Technologies</Authors>
@@ -13,7 +13,7 @@
         <ContentTargetFolders>content</ContentTargetFolders>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
         <Copyright>Zeta Technologies © 2025</Copyright>
-        <Description>Application to run as a background service for receiving and processing messages</Description>
+        <Description>Application to run background services</Description>
         <EnableNETAnalyzers>true</EnableNETAnalyzers>
         <EnablePackageValidation>true</EnablePackageValidation>
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
@@ -34,14 +34,14 @@
         <NeutralLanguage>en-US</NeutralLanguage>
         <Nullable>disable</Nullable>
         <OutputType>exe</OutputType>
-        <PackageDescription>Application to run as a background service for receiving and processing messages</PackageDescription>
+        <PackageDescription>Application to run background services</PackageDescription>
         <PackageIcon>PackageIcon.png</PackageIcon>
-        <PackageId>Zetatech.Tracking.Subscribers</PackageId>
+        <PackageId>Zetatech.Tracking.Jobs</PackageId>
         <PackageLicenseFile>License.txt</PackageLicenseFile>
         <PackageProjectUrl>https://github.com/users/josemaria-toro/projects/14</PackageProjectUrl>
         <PackageReadmeFile>Readme.md</PackageReadmeFile>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-        <PackageTags>Subscribers Tracking Zetatech</PackageTags>
+        <PackageTags>Jobs Tracking Zetatech</PackageTags>
         <PackageVersion>10.0.0</PackageVersion>
         <Product>Tracking Platform</Product>
         <PublishDocumentationFile>false</PublishDocumentationFile>
@@ -75,10 +75,10 @@
         <Content Include="$(SolutionDir)/PackageIcon.png" Pack="true" PackagePath="PackageIcon.png" />
     </ItemGroup>
     <ItemGroup>
-        <None Include="appsettings.json">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-            <CopyToPublishDirectory>Always</CopyToPublishDirectory>
-        </None>
+        <Content Include="appsettings.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </Content>
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="$(SolutionDir)/Zetatech.Tracking.Application/Zetatech.Tracking.Application.csproj" />
