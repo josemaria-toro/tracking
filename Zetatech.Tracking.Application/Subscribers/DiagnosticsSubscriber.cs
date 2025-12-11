@@ -60,14 +60,29 @@ public sealed class DiagnosticsSubscriber : RabbitMqSubscriberService<TrackingMe
         {
             Console.WriteLine($"{DateTime.UtcNow:yyyy-MM-dd HH:mm:ss} | Message of type '{message.MessageType}' was received");
 
-            switch (message.MessageType)
+            try
             {
-                case TrackingMessageTypes.Error:
-                    await SaveErrorAsync(message);
-                    break;
-                case TrackingMessageTypes.Trace:
-                    await SaveTraceAsync(message);
-                    break;
+                switch (message.MessageType)
+                {
+                    case TrackingMessageTypes.Error:
+                        await SaveErrorAsync(message);
+                        break;
+                    case TrackingMessageTypes.Trace:
+                        await SaveTraceAsync(message);
+                        break;
+                }
+            }
+            catch (ValidationException ex)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine($"{DateTime.UtcNow:yyyy-MM-dd HH:mm:ss} | Error processing message of type '{message.MessageType}' because is malformed | {ex.Message}");
+                Console.ResetColor();
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine($"{DateTime.UtcNow:yyyy-MM-dd HH:mm:ss} | Error processing message of type '{message.MessageType}' | {ex.Message}");
+                Console.ResetColor();
             }
         }
     }
