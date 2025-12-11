@@ -78,23 +78,38 @@ public sealed class TelemetrySubscriber : RabbitMqSubscriberService<TrackingMess
         {
             Console.WriteLine($"{DateTime.UtcNow:yyyy-MM-dd HH:mm:ss} | Message of type '{message.MessageType}' was received");
 
-            switch (message.MessageType)
+            try
             {
-                case TrackingMessageTypes.Dependency:
-                    await SaveDependencyAsync(message);
-                    break;
-                case TrackingMessageTypes.HttpRequest:
-                    await SaveHttpRequestAsync(message);
-                    break;
-                case TrackingMessageTypes.Metric:
-                    await SaveMetricAsync(message);
-                    break;
-                case TrackingMessageTypes.PageView:
-                    await SavePageViewAsync(message);
-                    break;
-                case TrackingMessageTypes.TestResult:
-                    await SaveTestResultAsync(message);
-                    break;
+                switch (message.MessageType)
+                {
+                    case TrackingMessageTypes.Dependency:
+                        await SaveDependencyAsync(message);
+                        break;
+                    case TrackingMessageTypes.HttpRequest:
+                        await SaveHttpRequestAsync(message);
+                        break;
+                    case TrackingMessageTypes.Metric:
+                        await SaveMetricAsync(message);
+                        break;
+                    case TrackingMessageTypes.PageView:
+                        await SavePageViewAsync(message);
+                        break;
+                    case TrackingMessageTypes.TestResult:
+                        await SaveTestResultAsync(message);
+                        break;
+                }
+            }
+            catch (ValidationException ex)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine($"{DateTime.UtcNow:yyyy-MM-dd HH:mm:ss} | Error processing message of type '{message.MessageType}' because is malformed | {ex.Message}");
+                Console.ResetColor();
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine($"{DateTime.UtcNow:yyyy-MM-dd HH:mm:ss} | Error processing message of type '{message.MessageType}' | {ex.Message}");
+                Console.ResetColor();
             }
         }
     }
@@ -168,7 +183,7 @@ public sealed class TelemetrySubscriber : RabbitMqSubscriberService<TrackingMess
             OperationId = message.OperationId,
             ResponseBody = message.Properties.ContainsKey("responseBody") ? message.Properties["responseBody"] : String.Empty,
             UpdatedAt = message.Timestamp,
-            Url = message.Properties.ContainsKey("url") ? message.Properties["url"] : throw new ValidationException("The property 'url' is required")
+            Url = message.Properties.ContainsKey("uri") ? message.Properties["uri"] : throw new ValidationException("The property 'url' is required")
         };
 
         if (!message.Properties.ContainsKey("appId"))

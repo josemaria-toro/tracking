@@ -54,11 +54,26 @@ public sealed class EventsSubscriber : RabbitMqSubscriberService<TrackingMessage
         {
             Console.WriteLine($"{DateTime.UtcNow:yyyy-MM-dd HH:mm:ss} | Message of type '{message.MessageType}' was received");
 
-            switch (message.MessageType)
+            try
             {
-                case TrackingMessageTypes.Event:
-                    await SaveEventAsync(message);
-                    break;
+                switch (message.MessageType)
+                {
+                    case TrackingMessageTypes.Event:
+                        await SaveEventAsync(message);
+                        break;
+                }
+            }
+            catch (ValidationException ex)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine($"{DateTime.UtcNow:yyyy-MM-dd HH:mm:ss} | Error processing message of type '{message.MessageType}' because is malformed | {ex.Message}");
+                Console.ResetColor();
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine($"{DateTime.UtcNow:yyyy-MM-dd HH:mm:ss} | Error processing message of type '{message.MessageType}' | {ex.Message}");
+                Console.ResetColor();
             }
         }
     }
