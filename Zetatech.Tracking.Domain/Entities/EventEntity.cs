@@ -13,14 +13,6 @@ public sealed class EventEntity : BaseEntity
     /// </summary>
     public Guid AppId { get; set; }
     /// <summary>
-    /// Gets or sets the timestamp when event was created.
-    /// </summary>
-    public DateTime CreatedAt { get; set; }
-    /// <summary>
-    /// Gets or sets the unique identifier of the event.
-    /// </summary>
-    public Guid Id { get; set; }
-    /// <summary>
     /// Gets or sets the metadata of the event.
     /// </summary>
     public String Metadata { get; set; }
@@ -32,8 +24,4 @@ public sealed class EventEntity : BaseEntity
     /// Gets or sets the operation identifier used to associate related event information.
     /// </summary>
     public Guid OperationId { get; set; }
-    /// <summary>
-    /// Gets or sets the timestamp when event was updated.
-    /// </summary>
-    public DateTime UpdatedAt { get; set; }
 }

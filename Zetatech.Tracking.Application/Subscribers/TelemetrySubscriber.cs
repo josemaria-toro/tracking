@@ -168,8 +168,8 @@ public sealed class TelemetrySubscriber : RabbitMqSubscriberService<TrackingMess
             }
         }
 
-        await _dependenciesRepository.InsertAsync(dependencyEntity);
-        await _dependenciesRepository.CommitAsync();
+        await _dependenciesRepository.InsertAsync(message.OperationId, dependencyEntity);
+        await _dependenciesRepository.CommitAsync(message.OperationId);
     }
     private async Task SaveHttpRequestAsync(TrackingMessage message)
     {
@@ -238,8 +238,8 @@ public sealed class TelemetrySubscriber : RabbitMqSubscriberService<TrackingMess
             }
         }
 
-        await _httpRequestsRepository.InsertAsync(httpRequestEntity);
-        await _httpRequestsRepository.CommitAsync();
+        await _httpRequestsRepository.InsertAsync(message.OperationId, httpRequestEntity);
+        await _httpRequestsRepository.CommitAsync(message.OperationId);
     }
     private async Task SaveMetricAsync(TrackingMessage message)
     {
@@ -281,8 +281,8 @@ public sealed class TelemetrySubscriber : RabbitMqSubscriberService<TrackingMess
             throw new ValidationException("The property 'value' has an invalid value");
         }
 
-        await _metricsRepository.InsertAsync(metricEntity);
-        await _metricsRepository.CommitAsync();
+        await _metricsRepository.InsertAsync(message.OperationId, metricEntity);
+        await _metricsRepository.CommitAsync(message.OperationId);
     }
     private async Task SavePageViewAsync(TrackingMessage message)
     {
@@ -327,8 +327,8 @@ public sealed class TelemetrySubscriber : RabbitMqSubscriberService<TrackingMess
             }
         }
 
-        await _pageViewsRepository.InsertAsync(pageViewEntity);
-        await _pageViewsRepository.CommitAsync();
+        await _pageViewsRepository.InsertAsync(message.OperationId, pageViewEntity);
+        await _pageViewsRepository.CommitAsync(message.OperationId);
     }
     private async Task SaveTestResultAsync(TrackingMessage message)
     {
@@ -382,7 +382,7 @@ public sealed class TelemetrySubscriber : RabbitMqSubscriberService<TrackingMess
             }
         }
 
-        await _testsResultsRepository.InsertAsync(testResultEntity);
-        await _testsResultsRepository.CommitAsync();
+        await _testsResultsRepository.InsertAsync(message.OperationId, testResultEntity);
+        await _testsResultsRepository.CommitAsync(message.OperationId);
     }
 }

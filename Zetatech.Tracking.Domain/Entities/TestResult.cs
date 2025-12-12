@@ -13,17 +13,9 @@ public sealed class TestResultEntity : BaseEntity
     /// </summary>
     public Guid AppId { get; set; }
     /// <summary>
-    /// Gets or sets the timestamp when test result was created.
-    /// </summary>
-    public DateTime CreatedAt { get; set; }
-    /// <summary>
     /// Gets or sets the duration (in milliseconds) of the test.
     /// </summary>
     public Double Duration { get; set; }
-    /// <summary>
-    /// Gets or sets the unique identifier of the test result.
-    /// </summary>
-    public Guid Id { get; set; }
     /// <summary>
     /// Gets or sets the message associated with the test result.
     /// </summary>
@@ -40,8 +32,4 @@ public sealed class TestResultEntity : BaseEntity
     /// Gets or sets a value indicating whether the test was successful.
     /// </summary>
     public Boolean Success { get; set; }
-    /// <summary>
-    /// Gets or sets the timestamp when test result was updated.
-    /// </summary>
-    public DateTime UpdatedAt { get; set; }
 }
