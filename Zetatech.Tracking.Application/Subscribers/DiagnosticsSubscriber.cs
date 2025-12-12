@@ -128,8 +128,8 @@ public sealed class DiagnosticsSubscriber : RabbitMqSubscriberService<TrackingMe
             throw new ValidationException("The property 'severity' has an invalid value");
         }
 
-        await _errorsRepository.InsertAsync(errorEntity);
-        await _errorsRepository.CommitAsync();
+        await _errorsRepository.InsertAsync(message.OperationId, errorEntity);
+        await _errorsRepository.CommitAsync(message.OperationId);
     }
     private async Task SaveTraceAsync(TrackingMessage message)
     {
@@ -171,7 +171,7 @@ public sealed class DiagnosticsSubscriber : RabbitMqSubscriberService<TrackingMe
             throw new ValidationException("The property 'severity' has an invalid value");
         }
 
-        await _tracesRepository.InsertAsync(traceEntity);
-        await _tracesRepository.CommitAsync();
+        await _tracesRepository.InsertAsync(message.OperationId, traceEntity);
+        await _tracesRepository.CommitAsync(message.OperationId);
     }
 }

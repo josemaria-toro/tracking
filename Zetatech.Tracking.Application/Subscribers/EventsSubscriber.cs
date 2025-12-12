@@ -103,7 +103,7 @@ public sealed class EventsSubscriber : RabbitMqSubscriberService<TrackingMessage
             throw new ValidationException("The property 'appId' has an invalid value");
         }
 
-        await _eventsRepository.InsertAsync(eventEntity);
-        await _eventsRepository.CommitAsync();
+        await _eventsRepository.InsertAsync(message.OperationId, eventEntity);
+        await _eventsRepository.CommitAsync(message.OperationId);
     }
 }

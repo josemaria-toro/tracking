@@ -17,17 +17,9 @@ public sealed class HttpRequestEntity : BaseEntity
     /// </summary>
     public String Body { get; set; }
     /// <summary>
-    /// Gets or sets the timestamp when HTTP request was created.
-    /// </summary>
-    public DateTime CreatedAt { get; set; }
-    /// <summary>
     /// Gets or sets the duration (in milliseconds) of the HTTP request.
     /// </summary>
     public Double Duration { get; set; }
-    /// <summary>
-    /// Gets or sets the unique identifier of the HTTP request.
-    /// </summary>
-    public Guid Id { get; set; }
     /// <summary>
     /// Gets or sets the IP address from which the HTTP request originated.
     /// </summary>
@@ -52,10 +44,6 @@ public sealed class HttpRequestEntity : BaseEntity
     /// Gets or sets a value indicating whether the HTTP request was successful.
     /// </summary>
     public Boolean Success { get; set; }
-    /// <summary>
-    /// Gets or sets the timestamp when HTTP request was updated.
-    /// </summary>
-    public DateTime UpdatedAt { get; set; }
     /// <summary>
     /// Gets or sets the URI associated with the HTTP request.
     /// </summary>

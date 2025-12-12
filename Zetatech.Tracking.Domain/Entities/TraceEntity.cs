@@ -13,14 +13,6 @@ public sealed class TraceEntity : BaseEntity
     /// </summary>
     public Guid AppId { get; set; }
     /// <summary>
-    /// Gets or sets the timestamp when trace was created.
-    /// </summary>
-    public DateTime CreatedAt { get; set; }
-    /// <summary>
-    /// Gets or sets the unique identifier of the trace.
-    /// </summary>
-    public Guid Id { get; set; }
-    /// <summary>
     /// Gets or sets the message of the trace.
     /// </summary>
     public String Message { get; set; }
@@ -36,8 +28,4 @@ public sealed class TraceEntity : BaseEntity
     /// Gets or sets the source of the trace.
     /// </summary>
     public String SourceTypeName { get; set; }
-    /// <summary>
-    /// Gets or sets the timestamp when trace was updated.
-    /// </summary>
-    public DateTime UpdatedAt { get; set; }
 }
